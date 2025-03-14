@@ -2,7 +2,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const response = await fetch("https://api.novu.co/v1/telemetry/measure", {
+    const response = await fetch(`${process.env.NOVU_API_URL}/v1/telemetry/measure`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
