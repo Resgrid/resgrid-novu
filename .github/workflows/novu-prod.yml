@@ -1,4 +1,4 @@
-name: Novu Sync
+name: Novu Prod Sync
 
 on:
   workflow_dispatch:
@@ -24,4 +24,4 @@ jobs:
           # The Novu Cloud API URL to sync with.
           # Optional.
           # Defaults to https://api.novu.co
-          api-url: https://api.novu.co
+          api-url: ${{ secrets.NOVU_API_URL }}
