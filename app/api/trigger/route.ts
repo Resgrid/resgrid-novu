@@ -1,9 +1,15 @@
 import { NextResponse } from "next/server";
-import { welcomeOnboardingEmail } from "../../novu/workflows";
+import { unitDispatch, welcomeOnboardingEmail } from "../../novu/workflows";
+
 
 export async function POST() {
   try {
     await welcomeOnboardingEmail.trigger({
+      to: process.env.NEXT_PUBLIC_NOVU_SUBSCRIBER_ID || "",
+      payload: {},
+    });
+
+    await unitDispatch.trigger({
       to: process.env.NEXT_PUBLIC_NOVU_SUBSCRIBER_ID || "",
       payload: {},
     });
