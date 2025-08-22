@@ -8,7 +8,6 @@ export const userDispatch = workflow(
       return {
         subject: payload.subject,
         body: payload.body,
-        avatar: payload.inAppAvatar,
         type: payload.type,
         id: payload.id,
       };
@@ -31,10 +30,6 @@ export const userDispatch = workflow(
         .string()
         .describe("The body of the notification")
         .default("Structure Fire Prioirty 1 in the area of Robbins Drive behind the industrial park. RP reports lots of black smoke."),
-      inAppAvatar: z
-        .string()
-        .describe("The avatar of the notification")
-        .default("https://avatars.githubusercontent.com/u/77433905?s=200&v=4"),
       type: z
         .string()
         .describe("The type of the notification")

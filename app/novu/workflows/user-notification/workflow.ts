@@ -1,8 +1,8 @@
 import { workflow } from "@novu/framework";
 import { z } from "zod";
 
-export const unitDispatch = workflow(
-  "unit-dispatch",
+export const userNotification = workflow(
+  "user-notification",
   async ({ step, payload }) => {
     await step.inApp("In-App Step", async () => {
       return {
@@ -34,7 +34,7 @@ export const unitDispatch = workflow(
         .string()
         .describe("The type of the notification")
         .default(
-          "call",
+          "notification",
         ),
       id: z
         .string()
