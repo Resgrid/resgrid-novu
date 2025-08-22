@@ -9,6 +9,8 @@ export const unitDispatch = workflow(
         subject: payload.subject,
         body: payload.body,
         avatar: payload.inAppAvatar,
+        type: payload.type,
+        id: payload.id,
       };
     });
 
@@ -33,11 +35,17 @@ export const unitDispatch = workflow(
         .string()
         .describe("The avatar of the notification")
         .default("https://avatars.githubusercontent.com/u/77433905?s=200&v=4"),
-      arrowImage: z
+      type: z
         .string()
-        .url()
+        .describe("The type of the notification")
         .default(
-          "https://react-email-demo-bdj5iju9r-resend.vercel.app/static/vercel-arrow.png",
+          "call",
+        ),
+      id: z
+        .string()
+        .describe("The unique identifier of the notification")
+        .default(
+          "default-id",
         ),
     })
   },

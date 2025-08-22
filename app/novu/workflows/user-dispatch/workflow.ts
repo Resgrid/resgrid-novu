@@ -9,6 +9,8 @@ export const userDispatch = workflow(
         subject: payload.subject,
         body: payload.body,
         avatar: payload.inAppAvatar,
+        type: payload.type,
+        id: payload.id,
       };
     });
 
@@ -33,6 +35,18 @@ export const userDispatch = workflow(
         .string()
         .describe("The avatar of the notification")
         .default("https://avatars.githubusercontent.com/u/77433905?s=200&v=4"),
+      type: z
+        .string()
+        .describe("The type of the notification")
+        .default(
+          "call",
+        ),
+      id: z
+        .string()
+        .describe("The unique identifier of the notification")
+        .default(
+          "default-id",
+        ),
     })
   },
 );

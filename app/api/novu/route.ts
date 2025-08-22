@@ -1,7 +1,7 @@
 import { serve } from "@novu/framework/next";
-import { unitDispatch, welcomeOnboardingEmail } from "../../novu/workflows";
+import { unitDispatch, userDispatch, welcomeOnboardingEmail } from "../../novu/workflows";
 
 // the workflows collection can hold as many workflow definitions as you need
 export const { GET, POST, OPTIONS } = serve({
-  workflows: [welcomeOnboardingEmail, unitDispatch],
+  workflows: [welcomeOnboardingEmail, unitDispatch, userDispatch],
 });
