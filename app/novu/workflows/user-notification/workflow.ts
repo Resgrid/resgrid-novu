@@ -25,11 +25,11 @@ export const userNotification = workflow(
       subject: z
         .string()
         .describe("The subject of the notification")
-        .default("New Call: Structure Fire"),
+        .default("Rescue 1 Responding"),
       body: z
         .string()
         .describe("The body of the notification")
-        .default("Structure Fire Prioirty 1 in the area of Robbins Drive behind the industrial park. RP reports lots of black smoke."),
+        .default("Rescue 1 has changed it's Status to Responding"),
       type: z
         .string()
         .describe("The type of the notification")
