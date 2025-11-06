@@ -10,6 +10,7 @@ export const userNotification = workflow(
         body: payload.body,
         type: payload.type,
         id: payload.id,
+        sound: payload.sound,
       };
     });
 
@@ -41,6 +42,12 @@ export const userNotification = workflow(
         .describe("The unique identifier of the notification")
         .default(
           "default-id",
+        ),
+      sound: z
+        .string()
+        .describe("The sound name for the notification")
+        .default(
+          "bell",
         ),
     })
   },
