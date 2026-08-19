@@ -12,7 +12,8 @@ export const userMessage = workflow(
         sentBy: payload.sentBy,
         sendingAvatar: payload.sendingAvatar,
         type: payload.type,
-        id: payload.id,
+        eventId: payload.eventId,
+        eventCode: payload.eventCode,
         sound: payload.sound,
       };
     });
@@ -52,11 +53,17 @@ export const userMessage = workflow(
         .default(
           "message",
         ),
-      id: z
+      eventId: z
         .string()
-        .describe("The unique identifier of the notification")
+        .describe("The message event code, duplicated as the notification event id")
         .default(
-          "default-id",
+          "M5678",
+        ),
+      eventCode: z
+        .string()
+        .describe("The message this notification belongs to, 'M{messageId}'; clients use it to open the message")
+        .default(
+          "M5678",
         ),
       sound: z
         .string()

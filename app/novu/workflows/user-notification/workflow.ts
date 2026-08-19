@@ -9,7 +9,8 @@ export const userNotification = workflow(
         subject: payload.subject,
         body: payload.body,
         type: payload.type,
-        id: payload.id,
+        eventId: payload.eventId,
+        eventCode: payload.eventCode,
         sound: payload.sound,
       };
     });
@@ -37,11 +38,17 @@ export const userNotification = workflow(
         .default(
           "notification",
         ),
-      id: z
+      eventId: z
         .string()
-        .describe("The unique identifier of the notification")
+        .describe("The notification event code, duplicated as the notification event id")
         .default(
-          "default-id",
+          "N9012",
+        ),
+      eventCode: z
+        .string()
+        .describe("The entity this notification refers to, 'N{messageId}'; clients use it for routing")
+        .default(
+          "N9012",
         ),
       sound: z
         .string()

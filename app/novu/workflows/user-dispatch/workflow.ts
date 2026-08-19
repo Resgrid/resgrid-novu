@@ -9,7 +9,8 @@ export const userDispatch = workflow(
         subject: payload.subject,
         body: payload.body,
         type: payload.type,
-        id: payload.id,
+        eventId: payload.eventId,
+        eventCode: payload.eventCode,
         sound: payload.sound,
       };
     });
@@ -37,11 +38,17 @@ export const userDispatch = workflow(
         .default(
           "call",
         ),
-      id: z
+      eventId: z
         .string()
-        .describe("The unique identifier of the notification")
+        .describe("The call event code, duplicated as the notification event id")
         .default(
-          "default-id",
+          "C1234",
+        ),
+      eventCode: z
+        .string()
+        .describe("The call this dispatch belongs to, 'C{callId}'; clients use it to open the call")
+        .default(
+          "C1234",
         ),
       sound: z
         .string()
