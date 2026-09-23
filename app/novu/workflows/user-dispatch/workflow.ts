@@ -1,6 +1,7 @@
 import { workflow } from "@novu/framework";
 import { z } from "zod";
 
+// Core's call dispatches to responder users ({code}_User_{id}), which is also the Dispatch app's inbox. Core sends eventCode as "C{callId}".
 export const userDispatch = workflow(
   "user-dispatch",
   async ({ step, payload }) => {
@@ -12,6 +13,11 @@ export const userDispatch = workflow(
         eventId: payload.eventId,
         eventCode: payload.eventCode,
         sound: payload.sound,
+        // Only `data` reaches the inbox: the framework's in-app output validation drops the other custom
+        // top-level keys (additionalProperties: false with removeAdditional: "failing").
+        data: {
+          eventCode: payload.eventCode,
+        },
       };
     });
 
@@ -55,6 +61,13 @@ export const userDispatch = workflow(
         .describe("The sound name for the notification")
         .default(
           "bell",
+        ),
+      // Empty by default: a sample call here would link every trigger without a code to a call that does not exist.
+      eventCode: z
+        .string()
+        .describe("The call this dispatch is for, 'C{callId}'; the inbox opens the call from it")
+        .default(
+          "",
         ),
     })
   },

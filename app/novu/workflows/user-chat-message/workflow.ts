@@ -17,6 +17,11 @@ export const userChatMessage = workflow(
         eventId: payload.eventId,
         eventCode: payload.eventCode,
         sound: payload.sound,
+        // The top-level keys above are dropped by the framework's in-app output validation
+        // (additionalProperties: false with removeAdditional: "failing"); only `data` reaches the inbox.
+        data: {
+          eventCode: payload.eventCode,
+        },
       };
     });
 
@@ -55,11 +60,13 @@ export const userChatMessage = workflow(
         .default(
           "g:00000000-0000-0000-0000-000000000000",
         ),
+      // Empty by default: now that the code reaches the inbox, a sample channel here would link every
+      // trigger without one to a conversation that does not exist.
       eventCode: z
         .string()
         .describe("The chat channel this message belongs to, 't:{channelId}' for a direct message and 'g:{channelId}' for a group channel")
         .default(
-          "g:00000000-0000-0000-0000-000000000000",
+          "",
         ),
       sound: z
         .string()
