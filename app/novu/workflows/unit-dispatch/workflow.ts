@@ -50,12 +50,6 @@ export const unitDispatch = workflow(
         .default(
           "C1234",
         ),
-      eventCode: z
-        .string()
-        .describe("The call this dispatch belongs to, 'C{callId}'; clients use it to open the call")
-        .default(
-          "C1234",
-        ),
       sound: z
         .string()
         .describe("The sound name for the notification")

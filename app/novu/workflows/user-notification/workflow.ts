@@ -53,12 +53,6 @@ export const userNotification = workflow(
         .default(
           "N9012",
         ),
-      eventCode: z
-        .string()
-        .describe("The entity this notification refers to, 'N{messageId}'; clients use it for routing")
-        .default(
-          "N9012",
-        ),
       sound: z
         .string()
         .describe("The sound name for the notification")

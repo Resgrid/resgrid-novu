@@ -67,12 +67,6 @@ export const userMessage = workflow(
         .default(
           "M5678",
         ),
-      eventCode: z
-        .string()
-        .describe("The message this notification belongs to, 'M{messageId}'; clients use it to open the message")
-        .default(
-          "M5678",
-        ),
       sound: z
         .string()
         .describe("The sound name for the notification")
